@@ -355,6 +355,64 @@
       position: absolute; border-radius: 50%;
       filter: blur(80px); pointer-events: none;
     }
+
+    /* ══ SCROLL REVEAL ══ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(46px) scale(0.98);
+      filter: blur(6px);
+      transition: opacity 0.9s cubic-bezier(.16,.8,.24,1),
+                  transform 0.9s cubic-bezier(.16,.8,.24,1),
+                  filter 0.9s cubic-bezier(.16,.8,.24,1);
+      will-change: opacity, transform;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    .reveal-left { transform: translateX(-50px) scale(0.98); }
+    .reveal-left.in-view { transform: translateX(0) scale(1); }
+    .reveal-right { transform: translateX(50px) scale(0.98); }
+    .reveal-right.in-view { transform: translateX(0) scale(1); }
+
+    .channel-badge {
+      opacity: 0;
+      transform: translateY(24px) scale(0.85);
+      transition: opacity 0.6s cubic-bezier(.34,1.56,.64,1),
+                  transform 0.6s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow 0.25s ease, border-color 0.25s ease;
+      will-change: opacity, transform;
+    }
+    .channel-badge.in-view { opacity: 1; transform: translateY(0) scale(1); }
+    .channel-badge:hover {
+      transform: translateY(-5px) scale(1.06) !important;
+      box-shadow: 0 10px 26px rgba(79,141,255,0.2) !important;
+      border-color: rgba(79,141,255,0.4) !important;
+    }
+
+    /* ══ PREMIUM TOUCHES ══ */
+    .btn-primary::before {
+      content: '';
+      position: absolute; top: 0; left: -120%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+    }
+    .btn-primary:hover::before { left: 130%; }
+
+    .card { will-change: transform; }
+    .card:hover { transform: translateY(-7px) scale(1.012); }
+
+    .stat-item:hover, .faq-item:hover { transform: translateY(-3px); }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
@@ -435,7 +493,7 @@
         </div>
       </div>
 
-      <div class="float fade-in-delay-2" style="position:relative; display:flex; justify-content:center; align-items:center; width:100%;">
+      <div class="float fade-in-delay-2" style="position:relative; display:flex; justify-content:center; align-items:center; width:100%; align-self:flex-start; margin-top:60px;">
         <div style="position:absolute;inset:-40px;background:radial-gradient(ellipse, rgba(79,141,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
 
         <div class="card" style="padding:24px; position:relative; background:#fff; max-width:460px; width:100%;">
@@ -483,23 +541,23 @@
     <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
       <p style="text-align:center; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin-bottom:28px;">Présent partout où sont vos clients</p>
       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px;">
-        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+        <span class="channel-badge" style="transition-delay:0.05s; display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7-1.87-1.87-4.36-2.94-7-2.94zm0 18.1a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.94 3.84zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.76-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
           WhatsApp
         </span>
-        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+        <span class="channel-badge" style="transition-delay:0.14s; display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
           <svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="igg" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#E1306C"/><stop offset="75%" stop-color="#C13584"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs><path fill="url(#igg)" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.24.64.41 1.37.46 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.43-.26.66-.6 1.22-1.15 1.77-.55.55-1.11.9-1.77 1.15-.64.24-1.37.41-2.43.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.46-.66-.26-1.22-.6-1.77-1.15-.55-.55-.9-1.11-1.15-1.77-.24-.64-.41-1.37-.46-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77.55-.55 1.11-.9 1.77-1.15.64-.24 1.37-.41 2.43-.46C8.94 2.01 9.28 2 12 2zm0 3.5A6.5 6.5 0 1 0 12 18.5 6.5 6.5 0 0 0 12 5.5zm0 10.72A4.22 4.22 0 1 1 12 7.78a4.22 4.22 0 0 1 0 8.44zm6.76-10.98a1.52 1.52 0 1 1-3.04 0 1.52 1.52 0 0 1 3.04 0z"/></svg>
           Instagram
         </span>
-        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+        <span class="channel-badge" style="transition-delay:0.23s; display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
           <svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="mgg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B2FF"/><stop offset="50%" stop-color="#0084FF"/><stop offset="100%" stop-color="#B620E0"/></linearGradient></defs><path fill="url(#mgg)" d="M12 2C6.48 2 2 6.14 2 11.26c0 2.94 1.44 5.56 3.7 7.28V22l3.38-1.86c.9.25 1.87.38 2.92.38 5.52 0 10-4.14 10-9.26C22 6.14 17.52 2 12 2zm1.02 12.47-2.55-2.72-4.98 2.72 5.48-5.82 2.6 2.72 4.93-2.72-5.48 5.82z"/></svg>
           Messenger
         </span>
-        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+        <span class="channel-badge" style="transition-delay:0.32s; display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
           <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#26A5E4"/><path fill="#fff" d="M17.5 7.2 15.6 16.9c-.14.63-.51.79-1.03.49l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.3-4.79c.23-.2-.05-.32-.36-.11l-6.55 4.13-2.82-.88c-.61-.19-.62-.61.13-.9l11.02-4.25c.51-.19.96.12.8.92z"/></svg>
           Telegram
         </span>
-        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid rgba(79,141,255,0.25); background:rgba(79,141,255,0.06); font-size:0.95rem; font-weight:700; color:#3b6fd4;">
+        <span class="channel-badge" style="transition-delay:0.41s; display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid rgba(79,141,255,0.25); background:rgba(79,141,255,0.06); font-size:0.95rem; font-weight:700; color:#3b6fd4;">
           🌐 50+ langues
         </span>
       </div>
@@ -1090,6 +1148,35 @@
     document.getElementById('submitBtn').textContent = 'Envoyer la demande →';
     document.getElementById('submitBtn').disabled = false;
   }
+
+  // ══ ANIMATION AU SCROLL ══
+  (function () {
+    var sections = document.querySelectorAll('main section, body > section');
+    sections.forEach(function (section, sIndex) {
+      if (sIndex === 0) return; // le hero s'anime déjà à l'ouverture, on ne le touche pas
+      var wrapper = section.querySelector(':scope > div');
+      var targets = wrapper ? Array.from(wrapper.children) : Array.from(section.children);
+      targets.forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.transitionDelay = Math.min(i * 0.09, 0.45) + 's';
+      });
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    document.querySelectorAll('.channel-badge').forEach(function (el) {
+      io.observe(el);
+    });
+  })();
 </script>
 
 </body>
