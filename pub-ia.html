@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="stylesheet" href="style.css" />
-<script src="theme.js"></script>
+<script>window.addEventListener("error",function(){});window.addEventListener("unhandledrejection",function(){});(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem("otomizy-theme")}catch(e){}if(s==="dark"||s==="light")r.setAttribute("data-theme",s);window.addEventListener("DOMContentLoaded",function(){var t=document.querySelector(".theme-toggle");if(!t)return;t.addEventListener("click",function(){var c=r.getAttribute("data-theme"),d;if(c==="dark")d=false;else if(c==="light")d=true;else d=!window.matchMedia("(prefers-color-scheme: dark)").matches;var n=d?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("otomizy-theme",n)}catch(e){}})})})();</script>
 </head>
 <body>
 
@@ -41,16 +41,16 @@
     </div>
     <div class="showcase-grid showcase-grid--4">
       <div class="showcase-item">
-        <img src="media/static/static-1.avif" alt="Static Ad 1" loading="lazy" />
+        <img src="media/static/static-1.avif" srcset="media/static/static-1-480.avif 480w, media/static/static-1.avif 900w" sizes="(max-width: 900px) 46vw, 24vw" alt="Static Ad 1" loading="eager" fetchpriority="high" width="900" height="1341" />
       </div>
       <div class="showcase-item">
-        <img src="media/static/static-2.avif" alt="Static Ad 2" loading="lazy" />
+        <img src="media/static/static-2.avif" srcset="media/static/static-2-480.avif 480w, media/static/static-2.avif 900w" sizes="(max-width: 900px) 46vw, 24vw" alt="Static Ad 2" loading="eager" width="900" height="1205" />
       </div>
       <div class="showcase-item">
-        <img src="media/static/static-3.avif" alt="Static Ad 3" loading="lazy" />
+        <img src="media/static/static-3.avif" srcset="media/static/static-3-480.avif 480w, media/static/static-3.avif 900w" sizes="(max-width: 900px) 46vw, 24vw" alt="Static Ad 3" loading="eager" width="900" height="1205" />
       </div>
       <div class="showcase-item">
-        <img src="media/static/static-4.avif" alt="Static Ad 4" loading="lazy" />
+        <img src="media/static/static-4.avif" srcset="media/static/static-4-480.avif 480w, media/static/static-4.avif 900w" sizes="(max-width: 900px) 46vw, 24vw" alt="Static Ad 4" loading="eager" width="900" height="900" />
       </div>
     </div>
   </section>
