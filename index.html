@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="stylesheet" href="style.css" />
-<script>window.addEventListener("error",function(){});window.addEventListener("unhandledrejection",function(){});(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem("otomizy-theme")}catch(e){}if(s==="dark"||s==="light")r.setAttribute("data-theme",s);window.addEventListener("DOMContentLoaded",function(){var t=document.querySelector(".theme-toggle");if(!t)return;t.addEventListener("click",function(){var c=r.getAttribute("data-theme"),d;if(c==="dark")d=false;else if(c==="light")d=true;else d=!window.matchMedia("(prefers-color-scheme: dark)").matches;var n=d?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("otomizy-theme",n)}catch(e){}})})})();</script>
+<script>(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem("otomizy-theme")}catch(e){}if(s==="dark"||s==="light")r.setAttribute("data-theme",s);window.addEventListener("DOMContentLoaded",function(){var t=document.querySelector(".theme-toggle");if(!t)return;t.addEventListener("click",function(){var c=r.getAttribute("data-theme"),d;if(c==="dark")d=false;else if(c==="light")d=true;else d=!window.matchMedia("(prefers-color-scheme: dark)").matches;var n=d?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("otomizy-theme",n)}catch(e){}})})})();</script>
 </head>
 <body>
 
@@ -38,8 +38,7 @@
   <p class="hint">Choisissez un service pour en savoir plus</p>
 
   <div class="bubbles" role="list">
-    <a class="bubble" role="listitem" href="agent-vocal.html" aria-label="Agent Vocal Réceptionniste — Bientôt disponible">
-      <span class="bubble-badge">Bientôt disponible</span>
+    <a class="bubble" role="listitem" href="agent-vocal.html" aria-label="Agent Vocal Réceptionniste">
       <span class="bubble-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/><path d="M12 18v4M8 22h8"/></svg>
       </span>
@@ -65,9 +64,47 @@
   </div>
 </main>
 
+<section class="testimonials" aria-label="Témoignages clients">
+  <h2 class="testimonials-heading">Ce qu'en pensent nos clients</h2>
+  <div class="testimonial-grid">
+    <blockquote class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/><path d="M18 7h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/></svg>
+      </span>
+      <p class="testimonial-text">« Franchement, ça nous a changé la vie. On reçoit beaucoup de messages et maintenant le chatbot s'occupe de la majorité des demandes tout seul. »</p>
+      <footer class="testimonial-author">
+        <span class="testimonial-name">Ahmed</span>
+        <span class="testimonial-role">E-commerce</span>
+      </footer>
+    </blockquote>
+    <blockquote class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/><path d="M18 7h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/></svg>
+      </span>
+      <p class="testimonial-text">« Au début j'étais sceptique, mais l'agent vocal répond vraiment comme une personne. Ça nous évite de perdre des appels quand on est occupés. »</p>
+      <footer class="testimonial-author">
+        <span class="testimonial-name">Yassine</span>
+        <span class="testimonial-role">Entreprise de services</span>
+      </footer>
+    </blockquote>
+    <blockquote class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/><path d="M18 7h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2"/></svg>
+      </span>
+      <p class="testimonial-text">« On avait l'habitude de passer des heures à préparer nos pubs. Maintenant, on peut tester plusieurs créatives beaucoup plus rapidement. »</p>
+      <footer class="testimonial-author">
+        <span class="testimonial-name">Sarra</span>
+        <span class="testimonial-role">Marque locale</span>
+      </footer>
+    </blockquote>
+  </div>
+</section>
+
 <footer class="site-footer">
   <p>© 2026 Otomizy — <a href="mailto:otomizy.tn@gmail.com">otomizy.tn@gmail.com</a></p>
 </footer>
+
+<script src="reveal.js"></script>
 
 </body>
 </html>
