@@ -27,3 +27,5 @@
 .site-footer p.nvidia-badge{margin:0 0 12px;font-size:9.5px;animation:none;opacity:1}
 .site-footer p.nvidia-badge svg{width:12px;height:12px}
 @media (prefers-reduced-motion:reduce){:is(.hero,.service-page,.cb-page,.site-footer) .nvidia-badge{animation:none;opacity:1}}
+
+@media (max-width:640px){.bubble:nth-child(2){order:1}.bubble:nth-child(3){order:2}.bubble:nth-child(1){order:3}}
