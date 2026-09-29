@@ -28,7 +28,16 @@
 .site-footer p.nvidia-badge svg{width:12px;height:12px}
 @media (prefers-reduced-motion:reduce){:is(.hero,.service-page,.cb-page,.site-footer) .nvidia-badge{animation:none;opacity:1}}
 
-@media (max-width:640px){.bubble:nth-child(2){order:1}.bubble:nth-child(3){order:2}.bubble:nth-child(1){order:3}}
+@media (max-width:640px){.bubble:nth-child(2){order:1}.bubble:nth-child(1){order:2}.bubble:nth-child(3){order:3}}
+:root{--glass-bg:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.28));--glass-edge:rgba(255,255,255,.95);--glass-rim:rgba(255,255,255,.7);--glass-inner:rgba(255,255,255,.35);--glass-shade:rgba(10,10,10,.06)}
+:root[data-theme=dark]{--glass-bg:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.03));--glass-edge:rgba(255,255,255,.28);--glass-rim:rgba(255,255,255,.18);--glass-inner:rgba(255,255,255,.06);--glass-shade:rgba(0,0,0,.35)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--glass-bg:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.03));--glass-edge:rgba(255,255,255,.28);--glass-rim:rgba(255,255,255,.18);--glass-inner:rgba(255,255,255,.06);--glass-shade:rgba(0,0,0,.35)}}
+.bubble{border:1px solid var(--glass-rim);background:var(--glass-bg);backdrop-filter:blur(28px) saturate(190%) brightness(1.05);-webkit-backdrop-filter:blur(28px) saturate(190%) brightness(1.05);box-shadow:inset 0 1.5px 0 var(--glass-edge),inset 0 -1px 0 var(--glass-inner),inset 0 0 22px var(--glass-inner),0 1px 2px var(--glass-shade),0 24px 48px -20px var(--glow)}
+.bubble::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 60% at 30% -10%,var(--glass-edge),transparent 55%),radial-gradient(80% 40% at 80% 115%,var(--glass-inner),transparent 70%);opacity:.55;mix-blend-mode:soft-light;transition:opacity .45s ease}
+.bubble>*{position:relative;z-index:1}
+.bubble:focus-visible,.bubble:hover{background:var(--glass-bg);box-shadow:inset 0 1.5px 0 var(--glass-edge),inset 0 0 28px var(--glass-inner),0 0 0 1px var(--border-strong),0 30px 70px -12px var(--glow),0 0 60px var(--glow)}
+.bubble:hover::after,.bubble:focus-visible::after{opacity:.85}
+@media (max-width:768px){.bubble{backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%)}}
 .cb-cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .cb-cap{--c1:var(--accent);--c2:var(--accent-2);position:relative;display:flex;flex-direction:column;gap:16px;border:1px solid var(--border);background:var(--bg-elevated);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;padding:24px 22px;text-align:left;box-shadow:var(--shadow-soft);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .4s ease}
 .cb-cap:nth-child(2){--c1:var(--accent-3);--c2:#0891b2}
