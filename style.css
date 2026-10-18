@@ -86,3 +86,7 @@
 .bubble::after{inset:auto;right:22px;top:50%;width:auto;height:auto;margin-top:-12px;background:none;mix-blend-mode:normal;opacity:1;content:"→";font-size:20px;line-height:24px;color:var(--text-faint);transition:transform .35s ease,color .3s ease}
 .bubble:hover::after,.bubble:focus-visible::after{opacity:1;color:var(--accent);transform:translateX(4px)}
 }
+
+.logo img{display:block;height:34px;width:auto}
+@media (max-width:640px){.logo img{height:28px}}
+.back-link img{display:block;height:26px;width:auto}
