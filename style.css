@@ -2,14 +2,8 @@
 .reveal{opacity:0;transform:translateY(24px)}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 .cb-hero-text h1 span,.av-hero h1 span{background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-:root{--nvidia:#4a7a00;--nvidia-glow:rgba(118,185,0,.28)}
 
 
-.nvidia-badge,:is(.hero,.service-page,.cb-page,.site-footer) .nvidia-badge{display:inline-flex;align-items:center;gap:6px;margin:-4px 0 22px;padding:0;color:var(--nvidia);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1;white-space:nowrap;text-shadow:0 0 10px var(--nvidia-glow);opacity:0;animation:rise .9s ease .12s forwards}
-:is(.hero,.service-page,.cb-page,.site-footer) .nvidia-badge svg,.nvidia-badge svg{width:14px;height:14px;flex-shrink:0;fill:currentColor;filter:drop-shadow(0 0 3px var(--nvidia-glow))}
-.site-footer p.nvidia-badge{margin:0 0 12px;font-size:9.5px;animation:none;opacity:1}
-.site-footer p.nvidia-badge svg{width:12px;height:12px}
-@media (prefers-reduced-motion:reduce){:is(.hero,.service-page,.cb-page,.site-footer) .nvidia-badge{animation:none;opacity:1}}
 
 @media (max-width:640px){.bubble:nth-child(2){order:1}.bubble:nth-child(1){order:2}}
 :root{--glass-bg:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.28));--glass-edge:rgba(255,255,255,.95);--glass-rim:rgba(255,255,255,.7);--glass-inner:rgba(255,255,255,.35);--glass-shade:rgba(10,10,10,.06)}
