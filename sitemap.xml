@@ -6,16 +6,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://otomizy.tn/agent-vocal.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://otomizy.tn/chatbot-ia.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://otomizy.tn/mentions-legales.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
