@@ -73,3 +73,14 @@
   }, { threshold: 0.3 });
   dio.observe(document.getElementById("demo"));
 })();
+
+/* FAQ: une seule question ouverte à la fois */
+(function () {
+  var items = document.querySelectorAll(".faq details");
+  items.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open) return;
+      items.forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+})();
