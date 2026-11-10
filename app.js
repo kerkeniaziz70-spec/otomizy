@@ -84,3 +84,44 @@
     });
   });
 })();
+
+/* Vidéo hero : play/pause + barre de progression (rapide au début, ralentit vers la fin) */
+(function () {
+  var box = document.getElementById("vplayer");
+  var v = document.getElementById("pubvid");
+  var fill = document.getElementById("vbarfill");
+  if (!box || !v || !fill) return;
+  var toggleBtn = box.querySelector(".vtoggle");
+  var raf = 0;
+
+  // courbe "ease-out" : avance vite puis ralentit, atteint 100 % à la fin
+  function curve(p) { return 1 - Math.pow(1 - p, 2.4); }
+  function draw() {
+    var p = v.duration ? Math.min(v.currentTime / v.duration, 1) : 0;
+    fill.style.transform = "scaleX(" + curve(p) + ")";
+  }
+  function loop() { draw(); raf = requestAnimationFrame(loop); }
+
+  function toggle() { if (v.paused || v.ended) v.play(); else v.pause(); }
+  box.addEventListener("click", toggle);
+
+  v.addEventListener("play", function () {
+    box.classList.add("playing", "started");
+    toggleBtn.setAttribute("aria-label", "Mettre en pause");
+    cancelAnimationFrame(raf); loop();
+  });
+  v.addEventListener("pause", function () {
+    box.classList.remove("playing");
+    toggleBtn.setAttribute("aria-label", "Lire la vidéo");
+    cancelAnimationFrame(raf); draw();
+  });
+  v.addEventListener("ended", function () { draw(); });
+  v.addEventListener("seeked", draw);
+
+  // pause automatique quand la vidéo sort de l'écran
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting && !v.paused) v.pause();
+    }, { threshold: 0.25 }).observe(box);
+  }
+})();
